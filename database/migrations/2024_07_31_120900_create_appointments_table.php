@@ -21,7 +21,7 @@ return new class extends Migration {
                 ->references('id')
                 ->on('doctors')
                 ->onDelete('cascade');
-           $table->unique(["doctor_id","patient_id"]);
+        
             $table->timestamps();
         });
     }
