@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\SpecializationController;
+use App\Http\Controllers\AppointmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,12 +25,17 @@ Route::post('/edit/specialization/{id}', [SpecializationController::class, 'edit
 Route::post('/delete/specialization/{id}', [SpecializationController::class, 'delete'])->name('delete_specialization');
 
 
-// specialization
+//doctor
 Route::get('/doctor', [DoctorController::class, 'index'])->name('doctor');
 Route::post('/add/doctor', [DoctorController::class, 'add'])->name('add_doctor');
 Route::post('/edit/doctor/{id}', [DoctorController::class, 'edit'])->name('edit_doctor');
 Route::post('/delete/doctor/{id}', [DoctorController::class, 'delete'])->name('delete_doctor');
 
+//appointment
+Route::get("/appointment",[AppointmentController::class,"index"])->name("appointment");
+Route::post("/add/appointment",[AppointmentController::class,"addappointment"])->name("add_appointment");
+Route::post('/edit/appointment/{id}', [AppointmentController::class, 'editappointment'])->name('edit_appointment');
+Route::post('/delete/appointment/{id}', [AppointmentController::class, 'deleteappointment'])->name('delete_appointment');
 
 Auth::routes();
 

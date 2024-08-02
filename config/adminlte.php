@@ -326,6 +326,11 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'Appointment',
+            'url' => 'appointment',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
             'text' => 'profile',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
