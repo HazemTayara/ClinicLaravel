@@ -6,6 +6,7 @@ use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AppointmentController extends Controller
 {
@@ -21,11 +22,27 @@ class AppointmentController extends Controller
     }
     public function addappointment(REQUEST $request)
     {
-        Appointment::create([
-            "date"=>$request->date,
-            "patient_id"=>$request->patient_id,
-            "doctor_id"=>$request->doctor_id
+        $validate= 
+        Validator::make($request->all(),
+           [
+             "date"=>"required|date",
+            "patient_id"=>"required|string|exists:patients,id",
+            "doctor_id"=>"required|string|exists:doctors,id",
         ]);
+        if ($validate->fails())
+        {
+            return $this->requiredField($validate->errors());
+        }
+        else{
+            $appointments=Appointment::create(
+                $validate->validated());
+        }
+        
+        // Appointment::create([
+        //     "date"=>$request->date,
+        //     "patient_id"=>$request->patient_id,
+        //     "doctor_id"=>$request->doctor_id
+        // ]);
         return view('home');
 
     }
